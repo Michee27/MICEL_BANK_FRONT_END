@@ -1,63 +1,61 @@
 import React, { useState } from "react";
-import "./LoginForm.css";
-import { useToast } from "../context/ToastContext";
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext"
+import "./LoginForm.css"; // Estilos personalizados
+import { useToast } from "../context/ToastContext"; // Exemplo de toast customizado
+import AuthService from "../services/authService";
 
 const LoginForm = () => {
-    const [cpf, setCpf] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { dispatchSuccessMsg, dispatchErrorMsg } = useToast(); // Use funções de Toast
+    const { showSuccess, showError } = useToast()
 
-    const formatCpf = (value) => {
-        const onlyNumbers = value.replace(/\D/g, "");
-        return onlyNumbers
-            .replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
-            .substring(0, 14);
-    };
+    const handleSubmit = async (e) => {
+        e.preventDefault()
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (cpf.replace(/\D/g, "").length !== 11 || password.length < 6) {
-            dispatchErrorMsg("CPF ou senha inválidos"); // Dispara mensagem de erro
+        const data = await AuthService.login({ email, password })
+        if (data.success) {
+            showSuccess('Login realizado com sucesso!')
+
         } else {
-            dispatchSuccessMsg("Login realizado com sucesso!"); // Dispara mensagem de sucesso
-            setTimeout(() => {
-                window.location.href = "/dashboard"; // Redireciona após sucesso
-            }, 1500);
+            showError(data.message)
         }
+
     };
 
     return (
         <div className="login-container">
             <div className="logo">
-                <i className="fas fa-landmark"></i>
-                DigiBank
+                Login MicelBank
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
-                    <label htmlFor="cpf">CPF</label>
-                    <input
-                        type="text"
-                        id="cpf"
-                        placeholder="Digite seu CPF"
-                        value={cpf}
-                        onChange={(e) => setCpf(formatCpf(e.target.value))}
-                        maxLength="14"
+                    <label htmlFor="email">Email</label>
+                    <InputText
+                        id="email"
+                        placeholder="Digite seu email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="p-inputtext-lg"
                     />
                 </div>
 
                 <div className="input-group">
                     <label htmlFor="password">Senha</label>
-                    <input
-                        type="password"
+                    <InputText
                         id="password"
+                        type="password"
                         placeholder="Digite sua senha"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        className="p-inputtext-lg"
                     />
                 </div>
-                <button type="submit" className="login-button">
-                    Entrar
-                </button>
+                <Button
+                    type="submit"
+                    label="Entrar"
+                    className="login-button p-button-rounded p-button-lg"
+                />
                 <a href="https://digibank.com/forgot-password" className="forgot-password">
                     Esqueceu sua senha?
                 </a>

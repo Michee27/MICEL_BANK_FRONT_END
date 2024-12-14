@@ -1,71 +1,30 @@
-import React, { createContext, useReducer, useContext } from 'react';
+import React, { createContext, useContext, useRef } from 'react';
+import { Toast } from 'primereact/toast';
 
-// Estado inicial
-const initialState = {
-    message: '',
-    type: '', // 'success' ou 'error'
-    isVisible: false,
-};
-
-// Tipos de ação
-const SHOW_TOAST = 'SHOW_TOAST';
-const HIDE_TOAST = 'HIDE_TOAST';
-
-// Reducer para gerenciar o estado
-function toastReducer(state, action) {
-    switch (action.type) {
-        case SHOW_TOAST:
-            return { message: action.payload.message, type: action.payload.type, isVisible: true };
-        case HIDE_TOAST:
-            return { ...state, isVisible: false };
-        default:
-            return state;
-    }
-}
-
-// Criar contexto
+// Criar contexto para o Toast
 const ToastContext = createContext();
 
-// Provedor de contexto
+// Provedor de Toast
 export const ToastProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(toastReducer, initialState);
+    const toastRef = useRef(null);
 
-    // Funções para disparar mensagens
-    const dispatchSuccessMsg = (message) => {
-        dispatch({ type: SHOW_TOAST, payload: { message, type: 'success' } });
+    const showSuccess = (message) => {
+        toastRef.current.show({ severity: 'success', detail: message, life: 3000 });
     };
 
-    const dispatchErrorMsg = (message) => {
-        dispatch({ type: SHOW_TOAST, payload: { message, type: 'error' } });
-    };
-
-    const hideToast = () => {
-        dispatch({ type: HIDE_TOAST });
+    const showError = (message) => {
+        toastRef.current.show({ severity: 'error', detail: message, life: 3000 });
     };
 
     return (
-        <ToastContext.Provider value={{ ...state, dispatchSuccessMsg, dispatchErrorMsg, hideToast }}>
+        <ToastContext.Provider value={{ showSuccess, showError }}>
+            <Toast ref={toastRef} position="top-right" />
             {children}
-            {state.isVisible && <Toast message={state.message} type={state.type} hideToast={hideToast} />}
         </ToastContext.Provider>
     );
 };
 
-// Custom hook para usar o contexto
-export const useToast = () => useContext(ToastContext);
-
-// Componente Toast
-const Toast = ({ message, type, hideToast }) => {
-    React.useEffect(() => {
-        const timer = setTimeout(() => {
-            hideToast();
-        }, 3000); // Toast desaparece após 3 segundos
-        return () => clearTimeout(timer);
-    }, [hideToast]);
-
-    return (
-        <div className={`toast toast-${type}`}>
-            {message}
-        </div>
-    );
+// Hook personalizado para usar o Toast
+export const useToast = () => {
+    return useContext(ToastContext);
 };
