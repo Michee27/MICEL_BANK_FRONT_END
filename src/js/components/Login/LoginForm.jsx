@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext"
 import "./LoginForm.css"; // Estilos personalizados
-import { useToast } from "../context/ToastContext"; // Exemplo de toast customizado
-import AuthService from "../services/authService";
+import { useToast } from "../../context/ToastContext"; // Exemplo de toast customizado
+import AuthService from "../../services/authService";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
