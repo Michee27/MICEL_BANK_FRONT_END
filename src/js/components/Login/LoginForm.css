@@ -11,7 +11,7 @@
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body {
+.login {
     background: var(--secondary);
     min-height: 100vh;
     display: flex;
@@ -29,7 +29,7 @@ body {
     text-align: center;
 }
 
-.logo {
+.logo-login {
     color: var(--primary);
     font-size: 2rem;
     font-weight: bold;
