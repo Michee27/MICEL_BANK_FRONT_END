@@ -5,7 +5,6 @@ import DropdownMenu from "../Dropdown/DropdownMenu";
 const Header = ({ user }) => {
     const [menuOpen, setMenuOpen] = useState(false);
 
-
     return (
         <div className="header">
             <h1>Bem-vindo, {user?.name}</h1>
