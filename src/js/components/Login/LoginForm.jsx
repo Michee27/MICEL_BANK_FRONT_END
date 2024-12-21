@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext"
-import "./LoginForm.css"; // Estilos personalizados
-import { useToast } from "../../context/ToastContext"; // Exemplo de toast customizado
+import "./LoginForm.css";
+import { useToast } from "../../context/ToastContext";
 import AuthService from "../../services/authService";
 
 const LoginForm = () => {
@@ -59,7 +59,7 @@ const LoginForm = () => {
                         label="Entrar"
                         className="login-button p-button-rounded p-button-lg"
                     />
-                    <a href="https://digibank.com/forgot-password" className="forgot-password">
+                    <a href="/" className="forgot-password">
                         Esqueceu sua senha?
                     </a>
                 </form>

@@ -13,7 +13,7 @@
 .card-chip {
     width: 50px;
     height: 40px;
-    background: #ffd700;
+    background: var(--primary);
     border-radius: 8px;
     margin-bottom: 2rem;
 }

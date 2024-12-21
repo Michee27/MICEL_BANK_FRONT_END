@@ -3,7 +3,7 @@ import './BottomMenu.css';
 
 const BottomMenu = () => {
     const handleNavigation = (path) => {
-        window.location.href = path; // Ou use o React Router `useNavigate`
+        window.location.href = path;
     };
 
     return (
