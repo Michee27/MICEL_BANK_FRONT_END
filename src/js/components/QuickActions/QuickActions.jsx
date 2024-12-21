@@ -1,10 +1,11 @@
 import React from 'react';
+import './QuickActions.css';
 
 const actions = [
-    { icon: 'fa-paper-plane', text: 'Transferir' },
-    { icon: 'fa-barcode', text: 'Pagar' },
-    { icon: 'fa-mobile-alt', text: 'Recarga' },
-    { icon: 'fa-hand-holding-usd', text: 'Pix' },
+    { icon: 'pi pi-send', text: 'Transferir' },
+    { icon: 'pi pi-credit-card', text: 'Pagar' },
+    { icon: 'pi pi-mobile', text: 'Recarga' },
+    { icon: 'pi pi-money-bill', text: 'Pix' },
 ];
 
 const QuickActions = () => {
@@ -21,7 +22,7 @@ const QuickActions = () => {
                     onClick={() => handleActionClick(action.text)}
                 >
                     <div className="action-icon">
-                        <i className={`fas ${action.icon}`}></i>
+                        <i className={`${action.icon}`} />
                     </div>
                     <h3>{action.text}</h3>
                 </div>

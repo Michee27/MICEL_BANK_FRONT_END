@@ -10,13 +10,15 @@ const LoginForm = () => {
     const [password, setPassword] = useState("");
     const { showSuccess, showError } = useToast()
 
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         const data = await AuthService.login({ email, password })
+
         if (data.success) {
             showSuccess('Login realizado com sucesso!')
-
+            window.location.href = '/';
         } else {
             showError(data.message)
         }
@@ -24,43 +26,45 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="logo">
-                Login MicelBank
-            </div>
-            <form onSubmit={handleSubmit}>
-                <div className="input-group">
-                    <label htmlFor="email">Email</label>
-                    <InputText
-                        id="email"
-                        placeholder="Digite seu email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="p-inputtext-lg"
-                    />
+        <section className="login">
+            <div className="login-container">
+                <div className="logo-login">
+                    Login MicelBank
                 </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="input-group">
+                        <label htmlFor="email">Email</label>
+                        <InputText
+                            id="email"
+                            placeholder="Digite seu email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="p-inputtext-lg"
+                        />
+                    </div>
 
-                <div className="input-group">
-                    <label htmlFor="password">Senha</label>
-                    <InputText
-                        id="password"
-                        type="password"
-                        placeholder="Digite sua senha"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="p-inputtext-lg"
+                    <div className="input-group">
+                        <label htmlFor="password">Senha</label>
+                        <InputText
+                            id="password"
+                            type="password"
+                            placeholder="Digite sua senha"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="p-inputtext-lg"
+                        />
+                    </div>
+                    <Button
+                        type="submit"
+                        label="Entrar"
+                        className="login-button p-button-rounded p-button-lg"
                     />
-                </div>
-                <Button
-                    type="submit"
-                    label="Entrar"
-                    className="login-button p-button-rounded p-button-lg"
-                />
-                <a href="https://digibank.com/forgot-password" className="forgot-password">
-                    Esqueceu sua senha?
-                </a>
-            </form>
-        </div>
+                    <a href="https://digibank.com/forgot-password" className="forgot-password">
+                        Esqueceu sua senha?
+                    </a>
+                </form>
+            </div>
+        </section>
     );
 };
 

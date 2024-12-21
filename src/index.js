@@ -9,12 +9,15 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import { ToastProvider } from './js/context/ToastContext';
+import { AuthProvider } from './js/context/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ToastProvider >
-      <App />
+      <AuthProvider >
+        <App />
+      </AuthProvider>
     </ToastProvider>
   </React.StrictMode >
 );

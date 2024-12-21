@@ -12,8 +12,8 @@ const AuthService = {
             const data = response.data;
             if (response.status === 200) {
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('usuario', JSON.stringify(data.usuario));
-                return { success: true, message: data.message, usuario: data.usuario };
+                localStorage.setItem('user', JSON.stringify(data.user));
+                return { success: true, message: data.message, user: data.user };
             }
 
             return { success: false, message: data.message };
@@ -26,18 +26,13 @@ const AuthService = {
     signup: async (formData) => api.post('/signup', formData, { headers: headers }),
 
     logout: async () => {
-        await api.post('/logout');
+        // await api.post('/logout');
         localStorage.removeItem('token');
-        localStorage.removeItem('usuario');
-        localStorage.removeItem('firebaseToken');
-        window.location.href = '/';
+        localStorage.removeItem('user');
+        window.location.href = '/login';
 
     },
 
-    VerificarEmail: async (token) => api.post('/verificar-email', token),
-    RecuperarSenha: async (email) => api.post('/recuperar-senha', email),
-    validaCodigo: async (codigoValidacao) => api.post('/valida-codigo', codigoValidacao),
-    atualizaSenha: async (newPassword) => api.post('/atualiza-senha', newPassword),
 };
 
 export default AuthService;

@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./Header.css";
 import DropdownMenu from "../Dropdown/DropdownMenu";
 
-const Header = () => {
+const Header = ({ user }) => {
     const [menuOpen, setMenuOpen] = useState(false);
+
 
     return (
         <div className="header">
-            <h1>Bem-vindo, João</h1>
+            <h1>Bem-vindo, {user?.name}</h1>
             <div className="user-info">
                 <i className="fas fa-bell"></i>
                 <div

@@ -70,12 +70,6 @@ body {
     margin-bottom: 2rem;
 }
 
-.quick-actions {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
 .recent-transactions {
     background: white;
     padding: 2rem;
@@ -87,4 +81,15 @@ body {
     justify-content: space-between;
     padding: 1rem 0;
     border-bottom: 1px solid #eee;
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .main-content {
+        padding: 5%;
+        width: 98%;
+    }
 }

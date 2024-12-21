@@ -1,25 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Layout from '../components/Layout/Layou';
+import Layout from '../components/Layout/Layout';
 import Transfers from '../components/Transfers/Transfers';
 import Home from '../components/Home/Home';
-
-
+import LoginForm from '../components/Login/LoginForm';
+import Cards from '../components/Cards/Cards';
+import ProtectedRoute from './ProtectedRoute';
 
 function AppRoutes() {
     return (
         <Router>
-
             <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route path="transfers" element={<Transfers />} />
+                {/* Rota pública para login */}
+                <Route path="/login" element={<LoginForm />} />
+
+                {/* Rotas protegidas */}
+                <Route
+                    path="/"
+                    element={
+                        <ProtectedRoute>
+                            <Layout />
+                        </ProtectedRoute>
+                    }
+                >
                     <Route index element={<Home />} />
-
-
-
+                    <Route path="transfers" element={<Transfers />} />
+                    <Route path="cards" element={<Cards />} />
                 </Route>
             </Routes>
-
         </Router>
     );
 }
