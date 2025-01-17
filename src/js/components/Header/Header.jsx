@@ -7,9 +7,8 @@ const Header = ({ user }) => {
 
     return (
         <div className="header">
-            <h1>Bem-vindo, {user?.name}</h1>
+            <h1 className="sub-title">Bem-vindo, {user?.name.split(" ")[0]}</h1>
             <div className="user-info">
-                <i className="fas fa-bell"></i>
                 <div
                     className="user-menu"
                     onClick={() => setMenuOpen((prev) => !prev)}

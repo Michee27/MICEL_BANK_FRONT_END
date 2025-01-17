@@ -7,8 +7,8 @@ import "./Cards.css";
 
 const Cards = () => {
     return (
-        <div>
-            <h1>Meus Cartões</h1>
+        <div className="home">
+            <h1 className="sub-title">Meus Cartões</h1>
 
             <CreditCard />
             <CardActions />

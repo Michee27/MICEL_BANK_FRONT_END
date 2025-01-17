@@ -95,3 +95,9 @@
     justify-content: center;
     color: var(--primary);
 }
+
+@media (max-width: 768px) {
+    .card-number {
+        font-size: 1rem;
+    }
+}

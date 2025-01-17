@@ -5,7 +5,7 @@ import RecentTransactions from '../RecentTransactions/RecentTransactions';
 
 const Home = () => {
     return (
-        <div>
+        <div className='home'>
             <BalanceCard balance="R$ 5.842,75" />
             <QuickActions />
             <RecentTransactions />

@@ -12,7 +12,6 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="logo">
-                <i className="fas fa-landmark"></i>
                 DigiBank
             </div>
             {menuItems.map((item, index) => (
