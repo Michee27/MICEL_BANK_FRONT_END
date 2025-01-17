@@ -9,7 +9,7 @@ const BalanceCard = ({ balance }) => {
         <div className="balance-card">
             <div className="balance-header">
                 <div>
-                    <h2>Saldo disponível</h2>
+                    <h2 className="sub-title">Saldo disponível</h2>
                     <div className="balance-amount">
                         {isVisible ? balance : 'R$ ●●●●,●●'}
                     </div>

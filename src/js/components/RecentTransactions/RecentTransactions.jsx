@@ -27,7 +27,7 @@ const transactions = [
 const RecentTransactions = () => {
     return (
         <div className="recent-transactions">
-            <h2>Últimas transações</h2>
+            <h2 className="sub-title">Últimas transações</h2>
             {transactions.map((transaction, index) => (
                 <div className="transaction-item" key={index}>
                     <div className="transaction-info">

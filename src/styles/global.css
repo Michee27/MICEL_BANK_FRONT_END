@@ -51,7 +51,7 @@ body {
 }
 
 .main-content {
-    padding: 2rem;
+    margin: 2rem;
 }
 
 .header {
@@ -59,6 +59,10 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
+}
+
+.sub-title {
+    font-size: 1.5rem;
 }
 
 /* Estilizações específicas */
@@ -85,11 +89,25 @@ body {
 
 @media (max-width: 768px) {
     .dashboard {
-        grid-template-columns: 1fr;
+        display: flex;
+        width: 100%;
     }
 
     .main-content {
-        padding: 5%;
-        width: 98%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 3% 0%;
     }
+
+    .home {
+        max-width: 100%;
+    }
+
+    .sub-title {
+        font-size: 1.2rem;
+    }
+
+
 }

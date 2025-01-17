@@ -26,7 +26,7 @@ const LoginForm = () => {
     };
 
     return (
-        <section className="login">
+        <div className="login">
             <div className="login-container">
                 <div className="logo-login">
                     Login MicelBank
@@ -44,7 +44,7 @@ const LoginForm = () => {
                     </div>
 
                     <div className="input-group">
-                        <label htmlFor="password">Senha</label>
+                        <label htmlFor="password">Password</label>
                         <InputText
                             id="password"
                             type="password"
@@ -56,15 +56,15 @@ const LoginForm = () => {
                     </div>
                     <Button
                         type="submit"
-                        label="Entrar"
+                        label="Login"
                         className="login-button p-button-rounded p-button-lg"
                     />
                     <a href="/" className="forgot-password">
-                        Esqueceu sua senha?
+                        Forgot your password ?
                     </a>
                 </form>
             </div>
-        </section>
+        </div>
     );
 };
 
