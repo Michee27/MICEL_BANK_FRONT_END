@@ -1,7 +1,7 @@
 import api from "../api/axiosConfig";
 const headers = {
-    'Content-Type': 'multipart/form-data',
-}
+    'Content-Type': 'application/json',
+};
 
 const AuthService = {
     login: async (requestData) => {
@@ -23,7 +23,7 @@ const AuthService = {
         }
     },
 
-    signup: async (formData) => api.post('/signup', formData, { headers: headers }),
+    signup: (formData) => api.post('/signup', formData, { headers: headers }),
 
     logout: async () => {
         // await api.post('/logout');

@@ -1,0 +1,22 @@
+.register-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 500px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.password-strength {
+    height: 5px;
+    background: #ddd;
+    margin-top: 0.5rem;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    width: 0;
+    background: #dc3545;
+    transition: width 0.3s, background 0.3s;
+}
