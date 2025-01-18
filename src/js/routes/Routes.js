@@ -6,6 +6,7 @@ import Home from '../components/Home/Home';
 import LoginForm from '../components/Login/LoginForm';
 import Cards from '../components/Cards/Cards';
 import ProtectedRoute from './ProtectedRoute';
+import RegisterForm from '../components/RegisterForm/RegisterForm';
 
 function AppRoutes() {
     return (
@@ -13,6 +14,7 @@ function AppRoutes() {
             <Routes>
                 {/* Rota pública para login */}
                 <Route path="/login" element={<LoginForm />} />
+                <Route path="/signup" element={<RegisterForm />} />
 
                 {/* Rotas protegidas */}
                 <Route

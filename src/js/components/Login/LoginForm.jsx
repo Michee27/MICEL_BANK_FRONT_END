@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext"
 import "./LoginForm.css";
 import { useToast } from "../../context/ToastContext";
 import AuthService from "../../services/authService";
+import MicelBankButton from "../Buttons/MicelBankButton";
 
 const LoginForm = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
     const { showSuccess, showError } = useToast()
 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setIsLoading(true)
 
         const data = await AuthService.login({ email, password })
 
@@ -21,14 +23,15 @@ const LoginForm = () => {
             window.location.href = '/';
         } else {
             showError(data.message)
+            setIsLoading(false)
         }
 
     };
 
     return (
-        <div className="login">
+        <div className="main-container">
             <div className="login-container">
-                <div className="logo-login">
+                <div className="logo-form">
                     Login MicelBank
                 </div>
                 <form onSubmit={handleSubmit}>
@@ -54,11 +57,16 @@ const LoginForm = () => {
                             className="p-inputtext-lg"
                         />
                     </div>
-                    <Button
+                    <MicelBankButton
                         type="submit"
                         label="Login"
-                        className="login-button p-button-rounded p-button-lg"
+                        className="main-button p-button-rounded p-button-lg"
+                        isLoading={isLoading}
+                        onClick={handleSubmit}
                     />
+                    <a href="/signup" >
+                        Signup
+                    </a>
                     <a href="/" className="forgot-password">
                         Forgot your password ?
                     </a>

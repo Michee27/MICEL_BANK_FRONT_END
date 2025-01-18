@@ -1,4 +1,4 @@
-.login {
+.main-container {
     background: var(--secondary);
     min-height: 100vh;
     display: flex;
@@ -11,12 +11,11 @@
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
     width: 400px;
     text-align: center;
 }
 
-.logo-login {
+.logo-form {
     color: var(--primary);
     font-size: 2rem;
     font-weight: bold;
@@ -50,22 +49,6 @@
 .input-group input:focus {
     border-color: var(--primary);
     outline: none;
-}
-
-.login-button {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 1rem;
-    width: 100%;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.login-button:hover {
-    background: var(--accent);
 }
 
 .forgot-password {
