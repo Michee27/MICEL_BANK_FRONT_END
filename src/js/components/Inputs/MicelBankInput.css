@@ -1,0 +1,35 @@
+/* MicelBankInput.css */
+.micel-bank-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.micel-bank-input-label {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.micel-bank-input-field {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+    outline: none;
+    width: 100%;
+}
+
+.micel-bank-input-field:focus {
+    border-color: #007bff;
+}
+
+.micel-bank-input-field:disabled {
+    background-color: #f5f5f5;
+    color: #aaa;
+    cursor: not-allowed;
+}

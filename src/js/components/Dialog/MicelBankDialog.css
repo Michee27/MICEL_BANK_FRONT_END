@@ -1,0 +1,52 @@
+/* micel-bank-dialog.css */
+.micel-bank-dialog {
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 50vw;
+}
+
+.micel-bank-dialog-content {
+    padding: 20px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.micel-bank-dialog-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px 20px;
+    border-top: 1px solid #ddd;
+    background-color: #f1f1f1;
+}
+
+.micel-bank-dialog-footer .p-button {
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.micel-bank-dialog-footer .p-button-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.micel-bank-dialog-footer .p-button-success {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.micel-bank-dialog-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f7f7f7;
+}
+
+@media (max-width: 768px) {
+    .micel-bank-dialog {
+        width: 90vw;
+    }
+}
