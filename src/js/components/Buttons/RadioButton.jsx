@@ -10,7 +10,7 @@ const RadioButtonGroup = ({ options, name, selectedValue, onChange }) => {
                         inputId={option.value}
                         name={name}
                         value={option.value}
-                        onChange={(e) => onChange({ name, value: e.value })} // Envia name e value no callback
+                        onChange={(e) => onChange({ name, value: e.value })}
                         checked={selectedValue === option.value}
                     />
                     <label htmlFor={option.value} className="ml-2">{option.label}</label>

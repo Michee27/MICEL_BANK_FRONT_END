@@ -26,7 +26,7 @@ function AppRoutes() {
                     }
                 >
                     <Route index element={<Home />} />
-                    <Route path="transfers" element={<Transfers />} />
+                    <Route path="history" element={<Transfers />} />
                     <Route path="cards" element={<Cards />} />
                 </Route>
             </Routes>
