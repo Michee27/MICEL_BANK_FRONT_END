@@ -5,6 +5,9 @@ import MicelBankInput from '../Inputs/MicelBankInput';
 import { TransactionsService } from '../../services/transactionsService';
 import { useToast } from '../../context/ToastContext';
 import { useAuth } from '../../context/AuthContext';
+import RadioButtonGroup from '../Buttons/RadioButton';
+import { InputText } from 'primereact/inputtext';
+import { formatCPF } from '../../Utils/Formats';
 
 const actions = [
     { icon: 'pi pi-send', text: 'Transferir' },
@@ -16,6 +19,12 @@ const actions = [
 const QuickActions = () => {
     const [dialogVisible, setDialogVisible] = useState(false);
     const [selectedAction, setSelectedAction] = useState('');
+    const [transferData, setTransferData] = useState({
+        tipoPix: '',
+        cpf: '',
+        email: '',
+        amount: ''
+    });
     const [amount, setAmount] = useState('');
     const [isLoading, setIsLoading] = useState(false)
     const { showSuccess, showError } = useToast()
@@ -26,21 +35,33 @@ const QuickActions = () => {
         setDialogVisible(true);
     };
 
+    const handleInputChange = (event) => {
+        console.log(event)
+        // Verifica se o evento é do RadioButtonGroup ou de um input padrão
+        const { name, value } = event.target || event;
+
+        setTransferData((prevData) => ({
+            ...prevData,
+            [name]: name === "cpf" ? formatCPF(value) : value, // Formata CPF se necessário
+        }));
+    };
+
+
+
     const handleConfirm = async () => {
         console.log(`Ação confirmada: ${selectedAction}`);
         setIsLoading(true);
 
         try {
-            // let response;
-
             switch (selectedAction) {
                 case 'Recarga':
                     await TransactionsService.recharge({ amount });
                     updateBalance(Number(amount))
                     break;
-                // case 'Transferir':
-                //     response = await TransactionsService.transfer();
-                //     break;
+                case 'Pix':
+                    await TransactionsService.transfer(transferData);
+                    updateBalance(-Number(transferData.amount))
+                    break;
                 // case 'Pagar':
                 //     response = await TransactionsService.pay();
                 //     break;
@@ -54,6 +75,7 @@ const QuickActions = () => {
             showSuccess(`Ação "${selectedAction}" realizada com sucesso!`);
             setDialogVisible(false);
         } catch (error) {
+            console.log(error)
             showError(error?.response?.data?.message);
         } finally {
             setIsLoading(false);
@@ -77,39 +99,88 @@ const QuickActions = () => {
             ))}
 
 
-            {selectedAction === 'Recarga' && (
-                <MicelBankDialog
-                    visible={dialogVisible}
-                    onHide={() => setDialogVisible(false)}
-                    title={`${selectedAction}`}
-                    isLoading={isLoading}
-                    content={
-                        <>
-                            {selectedAction === 'Recarga' && (
-                                <MicelBankInput
-                                    label="Valor Bancário"
-                                    value={amount}
-                                    onChange={setAmount}
-                                    placeholder="Digite apenas números"
-                                    maxLength={12}
-                                />
-                            )}
-                        </>
-                    }
-                    footerButtons={[
-                        {
-                            label: 'Cancelar',
-                            onClick: () => setDialogVisible(false),
-                            className: 'p-button-secondary',
-                        },
-                        {
-                            label: 'Confirmar',
-                            onClick: handleConfirm,
-                            className: 'p-button-success',
-                        },
-                    ]}
-                />
-            )}
+            <MicelBankDialog
+                visible={dialogVisible}
+                onHide={() => setDialogVisible(false)}
+                title={`${selectedAction}`}
+                isLoading={isLoading}
+                content={
+                    <>
+                        {selectedAction === 'Recarga' && (
+                            <MicelBankInput
+                                label="Valor Bancário"
+                                value={amount}
+                                onChange={(e) => setAmount(e.value)}
+                                placeholder="Digite apenas números"
+                                maxLength={12}
+                            />
+                        )}
+
+                        {selectedAction === 'Pix' && (
+                            <div>
+                                <div className="card flex justify-content-center">
+                                    <RadioButtonGroup
+                                        options={[
+                                            { value: 'CPF', label: 'CPF' },
+                                            { value: 'EMAIL', label: 'Email' },
+                                        ]}
+                                        name="tipoPix"
+                                        selectedValue={transferData.tipoPix}
+                                        onChange={handleInputChange}
+                                    />
+                                </div>
+
+                                {transferData.tipoPix.length > 0 && (
+                                    <>
+                                        {transferData.tipoPix === 'CPF' ? (
+                                            <div className="input-group">
+                                                <label>CPF</label>
+                                                <InputText
+                                                    name="cpf"
+                                                    value={transferData.cpf}
+                                                    onChange={handleInputChange}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <div className="input-group">
+                                                <label>Email</label>
+                                                <InputText
+                                                    name="email"
+                                                    value={transferData.email}
+                                                    onChange={handleInputChange}
+                                                />
+                                            </div>
+                                        )}
+
+                                        <MicelBankInput
+                                            name="amount"
+                                            label="Valor Transferencia"
+                                            value={transferData.amount}
+                                            onChange={handleInputChange}
+                                            placeholder="Digite apenas números"
+                                            maxLength={12}
+                                        />
+                                    </>
+                                )}
+
+                            </div>
+
+                        )}
+                    </>
+                }
+                footerButtons={[
+                    {
+                        label: 'Cancelar',
+                        onClick: () => setDialogVisible(false),
+                        className: 'p-button-secondary',
+                    },
+                    {
+                        label: 'Confirmar',
+                        onClick: handleConfirm,
+                        className: 'p-button-success',
+                    },
+                ]}
+            />
         </div>
     );
 };

@@ -6,5 +6,7 @@ const endpoint = '/account';
 export const TransactionsService = {
     recharge: (amount) => api.post(`${endpoint}/deposit`, amount
     ),
+    transfer: (transferData) => api.post(`${endpoint}/transfer`, transferData
+    ),
 
 }
