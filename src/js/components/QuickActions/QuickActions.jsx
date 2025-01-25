@@ -10,7 +10,7 @@ import { InputText } from 'primereact/inputtext';
 import { formatCPF } from '../../Utils/Formats';
 
 const actions = [
-    { icon: 'pi pi-send', text: 'Transferir' },
+    { icon: 'pi pi-history', text: 'Histórico' },
     { icon: 'pi pi-credit-card', text: 'Pagar' },
     { icon: 'pi pi-mobile', text: 'Recarga' },
     { icon: 'pi pi-money-bill', text: 'Pix' },
@@ -31,6 +31,8 @@ const QuickActions = () => {
     const { updateBalance } = useAuth();
 
     const handleActionClick = (action) => {
+        if (action === 'Histórico') return window.location.href = '/history';
+
         setSelectedAction(action);
         setDialogVisible(true);
     };
@@ -62,9 +64,6 @@ const QuickActions = () => {
                     await TransactionsService.transfer(transferData);
                     updateBalance(-Number(transferData.amount))
                     break;
-                // case 'Pagar':
-                //     response = await TransactionsService.pay();
-                //     break;
                 // case 'Pix':
                 //     response = await TransactionsService.pix();
                 //     break;

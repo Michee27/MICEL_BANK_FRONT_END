@@ -13,7 +13,7 @@ const BalanceCard = ({ balance }) => {
                 <div>
                     <h2 className="sub-title">Saldo disponível</h2>
                     <div className="balance-amount">
-                        {isVisible ? userBalance : 'R$ ●●●●,●●'}
+                        {isVisible ? `R$ ${userBalance}` : 'R$ ●●●●,●●'}
                     </div>
                 </div>
                 <i className="pi pi-eye" style={{ fontSize: '1.5rem' }} onClick={toggleBalance}></i>

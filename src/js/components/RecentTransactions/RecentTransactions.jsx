@@ -31,9 +31,6 @@ const RecentTransactions = () => {
             {transactions.map((transaction, index) => (
                 <div className="transaction-item" key={index}>
                     <div className="transaction-info">
-                        <div className="transaction-icon">
-                            <i className={`fas ${transaction.icon}`}></i>
-                        </div>
                         <div>
                             <h4>{transaction.title}</h4>
                             <small>{transaction.date}</small>

@@ -12,9 +12,9 @@ const BottomMenu = () => {
                 <i className="pi pi-home"></i>
                 <span>Home</span>
             </div>
-            <div className="menu-item-bottom" onClick={() => handleNavigation('/transfers')}>
+            <div className="menu-item-bottom" onClick={() => handleNavigation('/history')}>
                 <i className="pi pi-send"></i>
-                <span>Transferir</span>
+                <span>Histórico</span>
             </div>
             <div className="menu-item-bottom" onClick={() => handleNavigation('/cards')}>
                 <i className="pi pi-credit-card"></i>
