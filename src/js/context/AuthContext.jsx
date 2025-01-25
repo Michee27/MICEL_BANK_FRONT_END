@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     const updateBalance = (amount) => {
+        console.log(amount)
         if (user && user.balance) {
             const updatedUser = {
                 ...user,

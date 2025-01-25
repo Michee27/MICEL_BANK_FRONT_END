@@ -56,6 +56,11 @@
     transition: transform 0.3s;
 }
 
+.card-action-details {
+    width: 100%;
+    text-align: center;
+}
+
 .card-action-item:hover {
     transform: translateY(-5px);
 }

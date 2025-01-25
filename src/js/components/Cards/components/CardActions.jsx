@@ -14,7 +14,7 @@ const CardActions = () => {
                     <div className="card-action-icon">
                         <i className={action.icon}></i>
                     </div>
-                    <div>
+                    <div className="card-action-details">
                         <h3>{action.title}</h3>
                         <small>{action.description}</small>
                     </div>

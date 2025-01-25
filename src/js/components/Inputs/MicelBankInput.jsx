@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import './MicelBankInput.css';
 
 const MicelBankInput = ({
+    name,
     label,
     value,
     onChange,
@@ -14,20 +15,20 @@ const MicelBankInput = ({
     const handleInputChange = (event) => {
         const inputValue = event.target.value;
 
-        // Permitir apenas números (remover quaisquer caracteres não numéricos)
+        // Remove caracteres não numéricos
         const numericValue = inputValue.replace(/\D/g, '');
 
-        // Formatar o valor como decimal com duas casas
+        // Formata para decimal
         const formattedValue = formatToDecimal(numericValue);
 
-        // Chama o onChange com o valor formatado
-        onChange(formattedValue);
+        // Dispara o onChange com o name e o valor formatado
+        onChange({ name, value: formattedValue });
     };
 
     const formatToDecimal = (numericValue) => {
         if (!numericValue) return '0.00';
 
-        // Adiciona as casas decimais
+        // Divide por 100 para adicionar casas decimais
         const valueWithDecimals = (Number(numericValue) / 100).toFixed(2);
 
         return valueWithDecimals;
@@ -40,6 +41,7 @@ const MicelBankInput = ({
             <div className="p-inputgroup flex-1">
                 <span className="p-inputgroup-addon">$</span>
                 <input
+                    name={name}
                     type="text"
                     value={value}
                     onChange={handleInputChange}
@@ -55,9 +57,10 @@ const MicelBankInput = ({
 
 // PropTypes para validação das propriedades
 MicelBankInput.propTypes = {
+    name: PropTypes.string.isRequired,
     label: PropTypes.string,
-    value: PropTypes.string.isRequired, // O valor deve ser controlado pelo pai
-    onChange: PropTypes.func.isRequired, // Função de callback para atualizar o valor
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
     placeholder: PropTypes.string,
     disabled: PropTypes.bool,
     maxLength: PropTypes.number,
@@ -69,7 +72,7 @@ MicelBankInput.defaultProps = {
     label: '',
     placeholder: 'Digite o valor...',
     disabled: false,
-    maxLength: 15, // Limite ajustado para suportar decimais
+    maxLength: 15,
     className: '',
 };
 

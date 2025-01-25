@@ -1,6 +1,8 @@
 import React from "react";
 
-const CreditCard = () => {
+const CreditCard = ({ user }) => {
+
+    console.log(user)
     const handleMouseMove = (e) => {
         const card = e.currentTarget;
         const rect = card.getBoundingClientRect();
@@ -31,7 +33,7 @@ const CreditCard = () => {
             <div className="card-details">
                 <div>
                     <div className="card-label">Titular</div>
-                    <div className="card-holder">João Silva</div>
+                    <div className="card-holder">{user.name}</div>
                 </div>
                 <div className="card-brand">
                     <i className="fab fa-cc-mastercard"></i>
