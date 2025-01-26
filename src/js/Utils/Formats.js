@@ -21,12 +21,10 @@ export function cloneObject(obj) {
         return obj; // Retorna valores primitivos diretamente
     }
 
-    // Verifica se o browser suporta structuredClone
     if (typeof structuredClone === "function") {
         return structuredClone(obj);
     }
 
-    // Fallback: usar JSON (não recomendado para objetos complexos com funções, classes, etc.)
     try {
         return JSON.parse(JSON.stringify(obj));
     } catch (error) {
@@ -35,3 +33,9 @@ export function cloneObject(obj) {
     }
 }
 
+export const formatCurrency = (value) => {
+    return new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+    }).format(value);
+};
