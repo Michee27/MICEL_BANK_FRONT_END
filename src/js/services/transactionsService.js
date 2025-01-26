@@ -8,5 +8,6 @@ export const TransactionsService = {
     ),
     transfer: (transferData) => api.post(`${endpoint}/transfer`, transferData
     ),
+    transactionsHistory: () => api.get(`${endpoint}/statement`),
 
 }
