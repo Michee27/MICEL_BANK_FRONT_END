@@ -13,10 +13,13 @@ const TransactionHistory = () => {
         const handleTransactionHistory = async () => {
             try {
                 const { data } = await TransactionsService.transactionsHistory();
+
+                console.log(data)
                 const formattedTransactions = formatTransactions(data);
 
                 setTransactions(formattedTransactions);
             } catch (error) {
+                console.log(error)
                 showError(error.response.data.message)
             }
         };
