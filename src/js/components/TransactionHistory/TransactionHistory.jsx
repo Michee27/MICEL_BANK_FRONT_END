@@ -2,26 +2,26 @@ import React, { useState, useEffect } from "react";
 import "./TransactionHistory.css";
 import { formatCurrency } from "../../Utils/Formats";
 import { TransactionsService } from "../../services/transactionsService";
-import { formatTransactions } from "./formatTransactions";
+import { formatTransactions } from "./utils/formatTransactions";
+import { useToast } from "../../context/ToastContext";
 
 const TransactionHistory = () => {
+    const { showError } = useToast()
     const [transactions, setTransactions] = useState(null);
 
     useEffect(() => {
         const handleTransactionHistory = async () => {
             try {
                 const { data } = await TransactionsService.transactionsHistory();
-                console.log(data)
-
                 const formattedTransactions = formatTransactions(data);
 
                 setTransactions(formattedTransactions);
             } catch (error) {
-                console.log(error);
+                showError(error.response.data.message)
             }
         };
         handleTransactionHistory();
-    }, []);
+    }, [showError]);
 
     if (!transactions) {
         return <p>Carregando transações...</p>;
