@@ -38,20 +38,17 @@ const QuickActions = () => {
     };
 
     const handleInputChange = (event) => {
-        console.log(event)
-        // Verifica se o evento é do RadioButtonGroup ou de um input padrão
         const { name, value } = event.target || event;
 
         setTransferData((prevData) => ({
             ...prevData,
-            [name]: name === "cpf" ? formatCPF(value) : value, // Formata CPF se necessário
+            [name]: name === "cpf" ? formatCPF(value) : value,
         }));
     };
 
 
 
     const handleConfirm = async () => {
-        console.log(`Ação confirmada: ${selectedAction}`);
         setIsLoading(true);
 
         try {
@@ -74,7 +71,6 @@ const QuickActions = () => {
             showSuccess(`Ação "${selectedAction}" realizada com sucesso!`);
             setDialogVisible(false);
         } catch (error) {
-            console.log(error)
             showError(error?.response?.data?.message);
         } finally {
             setIsLoading(false);

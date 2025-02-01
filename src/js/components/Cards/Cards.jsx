@@ -11,7 +11,7 @@ const Cards = () => {
 
 
     return (
-        <div className="home">
+        <div className="main-container-card">
             <h1 className="sub-title">Meus Cartões</h1>
 
             <CreditCard user={user} />
