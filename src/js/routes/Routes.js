@@ -7,6 +7,7 @@ import Cards from '../components/Cards/Cards';
 import ProtectedRoute from './ProtectedRoute';
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 import TransactionHistory from '../components/TransactionHistory/TransactionHistory';
+import InvestmentDashboard from '../components/Investment/InvestmentDashboard';
 
 function AppRoutes() {
     return (
@@ -28,6 +29,8 @@ function AppRoutes() {
                     <Route index element={<Home />} />
                     <Route path="history" element={<TransactionHistory />} />
                     <Route path="cards" element={<Cards />} />
+                    <Route path="investments" element={<InvestmentDashboard />} />
+
                 </Route>
             </Routes>
         </Router>

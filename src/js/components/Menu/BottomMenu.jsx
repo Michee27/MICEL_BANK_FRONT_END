@@ -1,25 +1,19 @@
-import React from 'react';
-import './BottomMenu.css';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./BottomMenu.css";
+import { menuItems } from "./utils/constants";
 
 const BottomMenu = () => {
-    const handleNavigation = (path) => {
-        window.location.href = path;
-    };
+    const navigate = useNavigate();
 
     return (
         <div className="bottom-menu">
-            <div className="menu-item-bottom" onClick={() => handleNavigation('/')}>
-                <i className="pi pi-home"></i>
-                <span>Home</span>
-            </div>
-            <div className="menu-item-bottom" onClick={() => handleNavigation('/history')}>
-                <i className="pi pi-send"></i>
-                <span>Histórico</span>
-            </div>
-            <div className="menu-item-bottom" onClick={() => handleNavigation('/cards')}>
-                <i className="pi pi-credit-card"></i>
-                <span>Cartão</span>
-            </div>
+            {menuItems.map(({ path, icon, label }) => (
+                <div key={path} className="menu-item-bottom" onClick={() => navigate(path)}>
+                    <i className={icon}></i>
+                    <span>{label}</span>
+                </div>
+            ))}
         </div>
     );
 };

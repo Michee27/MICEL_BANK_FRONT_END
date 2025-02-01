@@ -1,8 +1,6 @@
 import React from "react";
 
 const CreditCard = ({ user }) => {
-
-    console.log(user)
     const handleMouseMove = (e) => {
         const card = e.currentTarget;
         const rect = card.getBoundingClientRect();

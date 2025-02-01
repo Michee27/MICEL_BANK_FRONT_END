@@ -13,13 +13,10 @@ const TransactionHistory = () => {
         const handleTransactionHistory = async () => {
             try {
                 const { data } = await TransactionsService.transactionsHistory();
-
-                console.log(data)
                 const formattedTransactions = formatTransactions(data);
 
                 setTransactions(formattedTransactions);
             } catch (error) {
-                console.log(error)
                 showError(error.response.data.message)
             }
         };
@@ -35,7 +32,7 @@ const TransactionHistory = () => {
     }
 
     return (
-        <div>
+        <div className="main-container-history">
             <div className="transaction-header" style={{ marginBottom: "1rem" }}>
                 <h2>Histórico de Transações</h2>
             </div>

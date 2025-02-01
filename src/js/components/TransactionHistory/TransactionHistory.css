@@ -1,3 +1,8 @@
+.main-container-history {
+    width: 100%;
+    margin-bottom: 10%
+}
+
 .transaction-header {
     background: white;
     border-radius: 15px;
