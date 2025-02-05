@@ -8,31 +8,34 @@ import ProtectedRoute from './ProtectedRoute';
 import RegisterForm from '../components/RegisterForm/RegisterForm';
 import TransactionHistory from '../components/TransactionHistory/TransactionHistory';
 import InvestmentDashboard from '../components/Investment/InvestmentDashboard';
+import { ScrollToTopProvider } from '../context/ScrollToTopContext';
 
 function AppRoutes() {
     return (
         <Router>
-            <Routes>
-                {/* Rota pública para login */}
-                <Route path="/login" element={<LoginForm />} />
-                <Route path="/signup" element={<RegisterForm />} />
+            <ScrollToTopProvider>
+                <Routes>
+                    {/* Rota pública para login */}
+                    <Route path="/login" element={<LoginForm />} />
+                    <Route path="/signup" element={<RegisterForm />} />
 
-                {/* Rotas protegidas */}
-                <Route
-                    path="/"
-                    element={
-                        <ProtectedRoute>
-                            <Layout />
-                        </ProtectedRoute>
-                    }
-                >
-                    <Route index element={<Home />} />
-                    <Route path="history" element={<TransactionHistory />} />
-                    <Route path="cards" element={<Cards />} />
-                    <Route path="investments" element={<InvestmentDashboard />} />
+                    {/* Rotas protegidas */}
+                    <Route
+                        path="/"
+                        element={
+                            <ProtectedRoute>
+                                <Layout />
+                            </ProtectedRoute>
+                        }
+                    >
+                        <Route index element={<Home />} />
+                        <Route path="history" element={<TransactionHistory />} />
+                        <Route path="cards" element={<Cards />} />
+                        <Route path="investments" element={<InvestmentDashboard />} />
 
-                </Route>
-            </Routes>
+                    </Route>
+                </Routes>
+            </ScrollToTopProvider>
         </Router>
     );
 }
